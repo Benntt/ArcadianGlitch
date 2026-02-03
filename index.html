@@ -1,1 +1,739 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcadian Glitch | Gaming Creator Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff88;
+            --dark: #0a0e1a;
+            --darker: #050811;
+            --gray: #1a1f35;
+            --light-gray: #8892b0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--light-gray);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--gray);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .trust-bar p {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--light-gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--gray);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        /* Platform Section */
+        .platforms {
+            padding: 8rem 2rem;
+            background: var(--darker);
+        }
+
+        .platforms-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .platform-list {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .platform-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gray);
+            border-radius: 12px;
+            min-width: 150px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            transition: all 0.3s;
+        }
+
+        .platform-item:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .platform-item .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .platform-item p {
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, #00cc6f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--dark);
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .step-content p {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .pricing-card {
+            background: var(--gray);
+            border: 2px solid rgba(0, 255, 136, 0.1);
+            border-radius: 16px;
+            padding: 3rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, var(--gray) 100%);
+        }
+
+        .plan-badge {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-badge.popular {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .pricing-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .price {
+            margin-bottom: 1rem;
+        }
+
+        .price .amount {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .price .period {
+            color: var(--light-gray);
+            font-size: 1.2rem;
+        }
+
+        .plan-description {
+            color: var(--light-gray);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            min-height: 3rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            color: var(--light-gray);
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-button {
+            display: block;
+            width: 100%;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .plan-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .pricing-card.featured .plan-button {
+            background: linear-gradient(135deg, var(--primary) 0%, #00cc6f 100%);
+        }
+
+        .pricing-note {
+            text-align: center;
+            color: var(--light-gray);
+            margin-top: 3rem;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, transparent 100%);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: var(--light-gray);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        footer p {
+            color: var(--light-gray);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">ARCADIAN GLITCH</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#process">Process</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Get Started</a>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Built for gamers who are <span class="highlight">done going solo</span></h1>
+            <p>Stop juggling everything. We handle the editing, strategy, and content planning so you can focus on what you do best—creating and streaming.</p>
+            <a href="#contact" class="cta-button">Level Up Your Content</a>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <p>Trusted by Gaming Creators Worldwide</p>
+    </div>
+
+    <!-- Features Section -->
+    <section id="services" class="features">
+        <div class="section-header">
+            <h2>We'll handle the rest</h2>
+            <p>Focus on streaming. We'll take care of everything else—from editing to strategy to growth.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">✂️</div>
+                <h3>Professional Editing</h3>
+                <p>Real editors who understand the rhythm, pacing, and humor of FPS and action games. Every cut is designed to hook viewers and keep them watching.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Strategic Planning</h3>
+                <p>Get clear direction on what to post, when to post, and why it works. Growth backed by actual data and experience, not guesswork.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Platform Management</h3>
+                <p>We manage your content across Twitch, TikTok, YouTube, and every platform that matters. Consistent uploads, optimized for each audience.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Short Form Content</h3>
+                <p>Clips, highlights, and viral-ready content created daily. Turn your best moments into growth engines that work while you sleep.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Creator Support</h3>
+                <p>You're not just a client—you're part of the team. Regular check-ins, analytics reviews, and strategic adjustments to hit your goals.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Turnaround</h3>
+                <p>Stream today, post tomorrow. We work on your schedule to keep your content fresh and your audience engaged.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section id="platforms" class="platforms">
+        <div class="platforms-content">
+            <div class="section-header">
+                <h2>Content for every platform</h2>
+                <p>We don't just post—we optimize. Every piece of content is crafted specifically for the platform it lives on.</p>
+            </div>
+            <div class="platform-list">
+                <div class="platform-item">
+                    <div class="icon">📺</div>
+                    <p>Twitch</p>
+                </div>
+                <div class="platform-item">
+                    <div class="icon">🎵</div>
+                    <p>TikTok</p>
+                </div>
+                <div class="platform-item">
+                    <div class="icon">▶️</div>
+                    <p>YouTube</p>
+                </div>
+                <div class="platform-item">
+                    <div class="icon">📷</div>
+                    <p>Instagram</p>
+                </div>
+                <div class="platform-item">
+                    <div class="icon">🎬</div>
+                    <p>Shorts</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="section-header">
+            <h2>How it works</h2>
+            <p>Getting started is simple. We make it easy at every step.</p>
+        </div>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Connect</h3>
+                    <p>Reach out via email or DM. We'll discuss your goals, your content, and which plan fits your current stage as a creator.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Setup</h3>
+                    <p>We set up your cloud storage, gather your branding assets, and go over content strategy. You'll know exactly what to expect.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Create</h3>
+                    <p>You stream and create. We handle all the editing, posting, and strategy. We meet regularly to track growth and adjust based on analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="section-header">
+            <h2>Plans for every creator</h2>
+            <p>Whether you're streaming to friends or building a full-time brand, we have a package built for your stage.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-badge">STARTER</div>
+                <h3>Starter</h3>
+                <div class="price">
+                    <span class="amount">$299</span>
+                    <span class="period">/month</span>
+                </div>
+                <p class="plan-description">Perfect for new creators ready to level up their content game</p>
+                <ul class="plan-features">
+                    <li>✓ 8 short form videos/month</li>
+                    <li>✓ Platform optimization</li>
+                    <li>✓ Basic analytics review</li>
+                    <li>✓ 48-hour turnaround</li>
+                    <li>✓ Email support</li>
+                </ul>
+                <a href="mailto:contact@arcadianglitch.com?subject=Starter Plan Inquiry" class="plan-button">Get Started</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="plan-badge popular">MOST POPULAR</div>
+                <h3>Growth</h3>
+                <div class="price">
+                    <span class="amount">$599</span>
+                    <span class="period">/month</span>
+                </div>
+                <p class="plan-description">For serious creators building a sustainable brand</p>
+                <ul class="plan-features">
+                    <li>✓ 20 short form videos/month</li>
+                    <li>✓ Full strategy sessions</li>
+                    <li>✓ Advanced analytics & insights</li>
+                    <li>✓ 24-hour turnaround</li>
+                    <li>✓ Priority support</li>
+                    <li>✓ Content calendar planning</li>
+                </ul>
+                <a href="mailto:contact@arcadianglitch.com?subject=Growth Plan Inquiry" class="plan-button">Get Started</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="plan-badge">PRO</div>
+                <h3>Pro</h3>
+                <div class="price">
+                    <span class="amount">$999</span>
+                    <span class="period">/month</span>
+                </div>
+                <p class="plan-description">Full-service management for established creators</p>
+                <ul class="plan-features">
+                    <li>✓ Unlimited short form content</li>
+                    <li>✓ Weekly strategy calls</li>
+                    <li>✓ Dedicated editor & strategist</li>
+                    <li>✓ 12-hour turnaround</li>
+                    <li>✓ 24/7 priority support</li>
+                    <li>✓ Brand partnership guidance</li>
+                    <li>✓ Thumbnail design included</li>
+                </ul>
+                <a href="mailto:contact@arcadianglitch.com?subject=Pro Plan Inquiry" class="plan-button">Get Started</a>
+            </div>
+        </div>
+        <p class="pricing-note">All plans include cloud storage, branding asset management, and regular strategy meetings. Custom packages available.</p>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <h2>Ready to take the next step?</h2>
+        <p>Join creators who are growing faster with a team that treats their content like their own.</p>
+        <div class="cta-buttons">
+            <a href="mailto:contact@arcadianglitch.com" class="cta-button">Get Started</a>
+            <a href="#pricing" class="btn-secondary">View Pricing</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Arcadian Glitch. Built for gaming creators.</p>
+    </footer>
+</body>
+</html>
